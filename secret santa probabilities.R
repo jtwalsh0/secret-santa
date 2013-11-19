@@ -41,7 +41,7 @@ n <- 10000  # number of simulations
 
 
 # matrix to store the results
-data <- matrix(0, n, k)  
+data <- matrix(data=0, nrow=n, ncol=k)  
   colnames(data) <- names
 
   # Each row is a simulation, and each column is a participant.
@@ -80,14 +80,12 @@ data <- matrix(0, n, k)
 
 
 ## MATRIX TO STORE PROBABILITIES
-whodrawswho <- matrix(NA, k, k)
+whodrawswho <- matrix(data=NA, nrow=k, ncol=k)
   rownames(whodrawswho) <- names
   colnames(whodrawswho) <- names
 
   for(j in 1:k){	# columns, for gifter
     for(i in 1:k){	#rows, for giftee
-      #i=1; j=1
-      #colnames(data)[i]
       whodrawswho[i,j] <- mean(data[,j]==colnames(data)[i])
     }
   }
@@ -100,7 +98,7 @@ round(whodrawswho,2)  # print matrix with rounded values
 ## BE SAFE: RECORD THE ASSIGNMENTS
 ## We make the actual assignments using the first simulation.
 
-assignments <- matrix(NA, k, 2)
+assignments <- matrix(data=NA, nrow=k, ncol=2)
   colnames(assignments) <- c("gifter","giftee")
 
   assignments[,1] <- names 
